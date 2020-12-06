@@ -3,3 +3,13 @@ body {
     padding-right: 10%;
     padding-top: 10px; */
 }
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.form-check {
+    margin-right: 10px;
+}
