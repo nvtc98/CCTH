@@ -13,3 +13,8 @@ body {
 .form-check {
     margin-right: 10px;
 }
+
+.title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}

@@ -27,6 +27,15 @@ const saveSession = () => {
     }
 }
 
+const saveSessionKeyword = () => {
+    if (typeof (Storage) !== "undefined") {
+        sessionStorage.setItem('dataKeyword', $("#txtDataKeyword").val());
+        sessionStorage.setItem('ruleKeyword', $("#txtRuleKeyword").val());
+    } else {
+        console.log("Session không được hỗ trợ");
+    }
+}
+
 const solve = () => {
     saveSession();
 
@@ -91,5 +100,57 @@ const solve = () => {
         ++rowIndex;
     })
     $("#txtResult").val(result.join("\n"));
+    // console.log(ruleTemp, rule,result);
+}
+
+const solveKeyword=()=>{
+    saveSessionKeyword();
+
+    let data = $("#txtDataKeyword").val().split("\n").filter(x => x !== '');
+    let ruleTemp = $("#txtRuleKeyword").val().split("\n\n");
+    let rule = [];
+    let result = [];
+
+    ruleTemp.forEach(x => {
+        let splitter = x.split('\n');
+        if (splitter.length < 2) {
+            return;
+        }
+        let ruleInputs = splitter[0].split(',').map(x => x.trim());
+        let ruleOutputs = splitter.slice(1);
+        rule.push({ ruleInputs, ruleOutputs, randomOrder: 0 });
+    });
+
+    data.forEach(row => {
+        let rowFound = false;
+        for (let i = 0; i < rule.length; ++i) {
+            let matched = false;
+            rule[i].ruleInputs.forEach(x => {
+                // console.log(row.toUpperCase(), "----------", x.toUpperCase(), "----------", row.toUpperCase().search(x.toUpperCase()) === -1);
+                if (!matched && row.toUpperCase().search(x.toUpperCase()) !== -1) {
+                    matched = true;
+                }
+            })
+            if (matched) {
+                // console.log("matched - luật thứ", i + 1, "                      ", row);
+                let order;
+                if (randomOrder) {
+                    order = _.random(rule[i].ruleOutputs.length - 1);
+                }
+                else {
+                    order = rule[i].randomOrder;
+                    rule[i].randomOrder = rule[i].randomOrder < rule[i].ruleOutputs.length - 1 ? rule[i].randomOrder + 1 : 0;
+                }
+                let dataToPush = rule[i].ruleOutputs[order];
+                // console.log("dataToPush", dataToPush, rowIndex);
+                result.push(dataToPush);
+                rowFound = true;
+                break;
+            }
+        }
+        // console.log(rowFound ? "đã match" : "không có ai match");
+        !rowFound && result.push("");
+    })
+    $("#txtResultKeyword").val(result.join("\n"));
     // console.log(ruleTemp, rule,result);
 }

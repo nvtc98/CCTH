@@ -62,22 +62,25 @@
 
 <body>
   <div class="container" style="padding-top:10px">
+    <div class="title">Fill dữ liệu</div>
     <!-- <textarea class="form-control" rows="5" id="txtCheckLink" ></textarea>
     <button type="button" class="btn btn-primary" onclick="checkLinkDie()">Check link die</button> -->
 
     <div class="flex-row" style="justify-content: space-between;">
       <textarea class="form-control" rows="5" id="txtData" style="float: left; width: 48%;"
         placeholder="Dữ liệu"></textarea>
-      <textarea class="form-control" rows="5" id="txtRule" style="float: right; width: 48%" placeholder="Luật"></textarea>
+      <textarea class="form-control" rows="5" id="txtRule" style="float: right; width: 48%"
+        placeholder="Luật"></textarea>
     </div>
-    <div class="flex-row" style="display: none; margin-top: 15px;"id="txtMatchPhoneContainer">
-      <textarea class="form-control" rows="5" id="txtMatchPhone" placeholder="Dữ liệu điện thoại để ghép nối"></textarea>
+    <div class="flex-row" style="display: none; margin-top: 15px;" id="txtMatchPhoneContainer">
+      <textarea class="form-control" rows="5" id="txtMatchPhone"
+        placeholder="Dữ liệu điện thoại để ghép nối"></textarea>
       <div class="form-group" style="margin-left: 10px;">
         <label for="txtMatchKeyword">Từ khóa ghép nối</label>
         <input type="text" class="form-control" id="txtMatchKeyword" value="cho">
       </div>
     </div>
-    <div class="flex-row" style="clear: both; padding-top: 10px; padding-bottom: 10px; justify-content: flex-end;">
+    <div class="flex-row" style="padding-top: 10px; padding-bottom: 10px; justify-content: flex-end;">
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="cbMatchPhone">
         <label class="form-check-label" for="exampleCheck1">Tự điền tên điện thoại</label>
@@ -89,6 +92,19 @@
       <button type="button" class="btn btn-primary" onclick="solve()">Quất</button>
     </div>
     <textarea class="form-control" rows="10" id="txtResult" readonly></textarea>
+
+    <div class="title" style="margin-top: 40px;">Keyword</div>
+    <div class="flex-row" style="justify-content: space-between;">
+      <textarea class="form-control" rows="5" id="txtDataKeyword" style="float: left; width: 48%;"
+        placeholder="Dữ liệu"></textarea>
+      <textarea class="form-control" rows="5" id="txtRuleKeyword" style="float: right; width: 48%"
+        placeholder="Luật keyword"></textarea>
+    </div>
+    <div class="flex-row" style="padding-top: 10px; padding-bottom: 10px; justify-content: flex-end;">
+      <button type="button" class="btn btn-primary" onclick="solveKeyword()">Tìm keyword</button>
+    </div>
+    <textarea class="form-control" rows="10" id="txtResultKeyword" readonly></textarea>
+
   </div>
 
 
