@@ -61,15 +61,15 @@
 </head>
 
 <body>
-  <div class="container" style="padding-top:10px">
+  <div class="container" style="padding-top:10px; padding-bottom: 10px;">
     <div class="title">Fill dữ liệu</div>
     <!-- <textarea class="form-control" rows="5" id="txtCheckLink" ></textarea>
     <button type="button" class="btn btn-primary" onclick="checkLinkDie()">Check link die</button> -->
 
     <div class="flex-row" style="justify-content: space-between;">
-      <textarea class="form-control" rows="5" id="txtData" style="float: left; width: 48%;"
+      <textarea class="form-control" rows="5" id="txtData" style="width: 48%;"
         placeholder="Dữ liệu"></textarea>
-      <textarea class="form-control" rows="5" id="txtRule" style="float: right; width: 48%"
+      <textarea class="form-control" rows="5" id="txtRule" style="width: 48%"
         placeholder="Luật"></textarea>
     </div>
     <div class="flex-row" style="display: none; margin-top: 15px;" id="txtMatchPhoneContainer">
@@ -95,15 +95,22 @@
 
     <div class="title" style="margin-top: 40px;">Keyword</div>
     <div class="flex-row" style="justify-content: space-between;">
-      <textarea class="form-control" rows="5" id="txtDataKeyword" style="float: left; width: 48%;"
-        placeholder="Dữ liệu"></textarea>
-      <textarea class="form-control" rows="5" id="txtRuleKeyword" style="float: right; width: 48%"
-        placeholder="Luật keyword"></textarea>
+      <textarea class="form-control" rows="5" id="txtDataKeyword1" style="width: 34%;"
+        placeholder="Dữ liệu tự dịch"></textarea>
+      <textarea class="form-control" rows="5" id="txtDataKeyword2" style="width: 34%"
+        placeholder="Dữ liệu shopee"></textarea>
+      <textarea class="form-control" rows="5" id="txtKeywordList" style="width: 26%"
+        placeholder="Danh sách keyword"></textarea>
     </div>
     <div class="flex-row" style="padding-top: 10px; padding-bottom: 10px; justify-content: flex-end;">
       <button type="button" class="btn btn-primary" onclick="solveKeyword()">Tìm keyword</button>
     </div>
-    <textarea class="form-control" rows="10" id="txtResultKeyword" readonly></textarea>
+    <div class="flex-row" style="justify-content: space-between;">
+      <textarea class="form-control" rows="10" id="txtResultKeyword" readonly style="width: 60%;"></textarea>
+      <div style="flex:1; align-items:center; padding: 2%;">
+        <div id="txtStatisticKeyword"></div>
+      </div>
+    </div>
 
   </div>
 
