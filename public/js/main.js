@@ -140,7 +140,7 @@ const solveKeyword = () => {
                         Tổng số câu: ${length}<br/>
                         Số keyword tìm được: ${count}/${length} (${rate}%)<br/>
                         Số keyword tìm được bởi bản tự dịch: ${countMain}/${length} (${rateMain}%)<br/>
-                        Số keyword tìm được bởi bản dịch shopee: ${count-countMain}/${length} (${_.round(rate - rateMain, 2)}%)<br/>
+                        Số keyword tìm được bởi bản dịch shopee: ${count - countMain}/${length} (${_.round(rate - rateMain, 2)}%)<br/>
                         `;
     console.log("statisticStr", statisticStr);
     $("#txtStatisticKeyword").html(statisticStr);

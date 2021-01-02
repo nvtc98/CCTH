@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Vietnam Why Not</title>
+
+</head>
+
+<body>
+    <div id="content"> </div>
+    <div class="container">
+        <!-- <div id="content"> </div> -->
+        <div class="row">
+            <!-- <img src="./relay-team/image/quaithao.png"></img> -->
+            <div class="progress-container">
+                <div class="progress"></div>
+            </div>
+            <div class="row">
+                <div class="point-arrow"></div>
+                <div class="point">
+                    ...
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:6px; margin-bottom: 6px;">
+            <!-- <img src="./relay-team/image/khanran.png"></img> -->
+            <div class="progress-container">
+                <div class="progress"></div>
+            </div>
+            <div class="row">
+                <div class="point-arrow"></div>
+                <div class="point">
+                    ...
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- <img src="./relay-team/image/nonla.png"></img> -->
+            <div class="progress-container">
+                <div class="progress"></div>
+            </div>
+            <div class="row">
+                <div class="point-arrow"></div>
+                <div class="point">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./appfast-sdk.js?v=0.0.15" type="text/javascript"></script>
+
+<script>
+
+    var appfast = null;
+    try {
+        appfast = new Appfast({
+            projectId: '5f40ebbb59c8400010d9c61a'
+        });
+    }
+    catch {
+
+        alert("lỗi");
+    }
+
+    var currentUser = 1;
+
+
+    const go = async (a, b) => {
+
+        if (!appfast) {
+            alert("lỗi");
+        }
+
+        if (currentUser === null) { return }
+
+        if (currentUser === 1) {
+            currentUser = await appfast.getCurrentUser();
+            if (!currentUser) {
+                currentUser = null;
+                alert("chưa có user");
+            }
+        }
+
+        for (let index = 0; index < 3; index++) {
+            const result = await appfast.graphMutate(`
+      mutation loyaltyTrackingByAction($input: TrackingActionInput) {
+          loyaltyTrackingByAction(input: $input)
+      }`, {
+                input: {
+                    data: {
+                        projectId: '5f40ebbb59c8400010d9c61a',
+                        action: 'challenge',
+                        extraData: {
+                            gameId: a,
+                            amount: b
+                        }
+                    },
+                },
+            });
+        }
+
+        // await appfast.alert('Chúc mừng bạn nhận được 10 điểm!');
+        // await appfast.updatePoint();
+    }
+
+    go('5fbb7f9b2da13e001070f06e', 10); //findword
+    setTimeout(() => {
+        go('5fab5b8648066a00103d1359', 10); //quiz
+    }, 3000);
+    setTimeout(() => {
+        go('5faf61930385000010c16cd3', 20); //puzzle
+    }, 6000);
+    setTimeout(() => {
+        go('5fc744f52522520010c7674e', 11); //xiaomi
+    }, 9000);
+
+    var count = 12;
+    const aa = setInterval(() => {
+        document.getElementById('content').innerHTML = count--;
+        if (count < 0) {
+            clearInterval(aa);
+            alert("xong");
+            return;
+        }
+    }, 1000);
+
+</script>
+
+</html>
